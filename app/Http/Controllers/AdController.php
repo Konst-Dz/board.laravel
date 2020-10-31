@@ -84,7 +84,9 @@ class AdController extends Controller
      */
     public function show($category,$subcategory,Ad $ad)
     {
-       return view('ad',['ad'=>$ad]);
+        $city = $ad->cities->first()->name;
+
+       return view('ad',['ad'=>$ad,'city'=>$city]);
     }
 
     /**

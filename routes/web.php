@@ -23,7 +23,7 @@ Route::resource('ads','App\Http\Controllers\AdController',['only'=>['create','st
 
 
 Route::get('/', function () {
-    return view('index');
+    return redirect()->route('ads');
 });
 
 Route::get('welcome/{locale}', function ($locale) {

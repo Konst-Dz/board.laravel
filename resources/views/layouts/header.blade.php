@@ -6,7 +6,7 @@
         <div class="col-6 col-xl-2">
             <h1 class="mb-0 site-logo"><a href="index.html" class="text-black mb-0">Classy<span class="text-primary">Ads</span>  </a></h1>
         </div>
-        <div class="col-12 col-md-10 d-none d-xl-block">
+        <div class="col-12 col-md-12 d-none d-xl-block">
             <nav class="site-navigation position-relative text-right" role="navigation">
 
                 <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
@@ -16,19 +16,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('locale', ['locale' => 'ru']) }}">RU</a>
                     </li>
-                    <li class="active"><a href={{ url('/') }}>Home</a></li>
-                    <li><a href="{{route('ads')}}">Ads</a></li>
-                    <li class="has-children">
-                        <a href="about.html">About</a>
-                        <ul class="dropdown">
-                            <li><a href="#">The Company</a></li>
-                            <li><a href="#">The Leadership</a></li>
-                            <li><a href="#">Philosophy</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
+                    <li class="active"><a href={{ url('/') }}>{{__('messages.home')}}</a></li>
+                    <li><a href="{{route('ads')}}">{{__('messages.ads')}}</a></li>
+                    <li>
+                        <a href="{{--{{route('about')}}--}}">{{__('messages.About')}}</a>
                     </li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
                     {{--@if(!\Illuminate\Support\Facades\Auth::check())--}}
                     @guest
                     <li class="ml-xl-3 login"><a href="{{ route('login') }}"><span class="border-left pl-xl-4"></span>{{__('messages.buttonLogin')}}</a></li>

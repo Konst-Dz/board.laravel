@@ -12,8 +12,7 @@
 
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-8 text-center">
-                            <h1>Contact Us</h1>
-                            <p class="mb-0">Get In Touch</p>
+                            <h1>{{__('messages.addAnAd')}}</h1>
                         </div>
                     </div>
 
@@ -125,27 +124,6 @@
                     </form>
                 </div>
 
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <div class="newsletter bg-primary py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6">
-                    <h2>Newsletter</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                </div>
-                <div class="col-md-6">
-
-                    <form class="d-flex">
-                        <input type="text" class="form-control" placeholder="Email">
-                        <input type="submit" value="Subscribe" class="btn btn-white">
-                    </form>
-                </div>
             </div>
         </div>
     </div>

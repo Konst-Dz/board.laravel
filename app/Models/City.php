@@ -9,8 +9,14 @@ class City extends Model
 {
     use HasFactory;
 
-    public function cityable()
+    public function ads()
     {
-        return $this->morphTo();
+        return $this->morphedByMany('App\Models\Ad','cityable');
     }
+
+    public function users()
+    {
+        return $this->morphedByMany('App\Models\User','cityable');
+    }
+
 }

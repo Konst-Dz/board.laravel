@@ -57,6 +57,6 @@ class User extends Authenticatable
 
     public function cities()
     {
-        return $this->morphMany('App\Models\City','cityable');
+        return $this->morphToMany('App\Models\City','cityable');
     }
 }
