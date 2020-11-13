@@ -15,11 +15,17 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function (){
     Route::resources([
         'admin/category' => 'App\Http\Controllers\Admin\CategoryController',
-        'admin/ad' => 'App\Http\Controllers\Admin\AdController'
+        'admin/ad' => 'App\Http\Controllers\Admin\AdController',
     ]);
+
+    Route::get('edit/{ad}', ['App\Http\Controllers\AdController','edit']);
 });
 
-Route::resource('ads','App\Http\Controllers\AdController',['only'=>['create','store']]);
+Route::resource('ads','App\Http\Controllers\AdController',[
+
+    'only'=>['create','store'],
+
+    ]);
 
 
 Route::get('/', function () {

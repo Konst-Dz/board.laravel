@@ -17,7 +17,6 @@ class CreatePhoneablesTable extends Migration
             $table->integer('phone_id');
             $table->integer('phoneable_id');
             $table->string('phoneable_type');
-            $table->timestamps();
         });
     }
 

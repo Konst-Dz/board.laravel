@@ -13,7 +13,7 @@ class CreateCityableTable extends Migration
      */
     public function up()
     {
-        Schema::create('cityable', function (Blueprint $table) {
+        Schema::create('cityables', function (Blueprint $table) {
             $table->integer('city_id');
             $table->integer('cityable_id');
             $table->string('cityable_type');
@@ -27,6 +27,6 @@ class CreateCityableTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cityable');
+        Schema::dropIfExists('cityables');
     }
 }

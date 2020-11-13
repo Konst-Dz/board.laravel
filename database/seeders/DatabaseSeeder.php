@@ -17,15 +17,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-       /* $this->call([
-            //CategorySeeder::class,
+       \App\Models\User::factory(10)->create();
+
+        /*$this->call([
+           // CategorySeeder::class,
             //SubcategorySeeder::class,
             //AdSeeder::class,
-            City::class
+            //CitySeeder::class,
+            //CityableSeeder::class
         ]);*/
-        $this->call(
-            City::class
-       );
+
     }
 }

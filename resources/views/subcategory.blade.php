@@ -40,7 +40,7 @@
                         @foreach($ads as $ad)
                             <div class="col-lg-6">
                                 <div class="d-block d-md-flex listing vertical">
-                                    <a href="{{url('ads/'.$category->slug.'/'.$ad->subcategory->slug.'/'.$ad->id)}}" class="img d-block" style="background-image:url({{$ad->photo}})"></a>
+                                    <a href="{{url('ads/'.$category->slug.'/'.$ad->subcategory->slug.'/'.$ad->id)}}" class="img d-block" style="background-image:url({{\Illuminate\Support\Facades\Storage::url($ad->photo)}})"></a>
                                     <div class="lh-content">
                                         <span class="category">{{$ad->subcategory->category->name}}</span>
                                         <span class="category">{{$ad->subcategory->name}}</span>

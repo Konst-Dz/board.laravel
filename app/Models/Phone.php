@@ -9,6 +9,8 @@ class Phone extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['number'];
+
     public function users()
     {
         return $this->morphedByMany('App\Model\User','phoneable');

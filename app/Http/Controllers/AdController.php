@@ -6,6 +6,7 @@ use App\Http\Requests\StoreAd;
 use App\Models\Ad;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Phone;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -22,8 +23,8 @@ class AdController extends Controller
     public function index()
     {
         $ads = Ad::with(['subcategory','subcategory.category'])->get();
-        $categories = Category::withCount('ad')->get();
 
+        $categories = Category::withCount('ad')->get();
         return view('listings',['ads' => $ads,'categories' => $categories,]);
     }
 
@@ -49,30 +50,25 @@ class AdController extends Controller
     {
 
         if ($request->file('image')){
-            $path =  $request->file('image')->storeAs('ads_photo',$request->image->getClientOriginalName());
+            $path =  $request->file('image')->store('ads_photo');
         }
         else{
             $path = null;
         }
 
-        Ad::create([
+       $user = Ad::create([
             'name' => $request->name,
             'description' => $request->description,
             'price' => $request->price,
-            'photo' => DIRECTORY_SEPARATOR.$path ,
+            'photo' => $path ,
             'subcategory_id'=> $request->category ,
             'user_id' => $request->user()->id,
         ]);
 
+        $phone = Phone::firstOrCreate(['number' => $request->phone]);
+        $user->phones()->attach($phone->id);
+
         return back()->with('status','Обьявление успешно отправлено,ожидайте проверки модераторами');
-
-
-
-        //dump($request->image->getClientOriginalName());
-        //$path =  $request->file('image')->store('ads_photo');
-        //$path =  $request->file('image')->storeAs('ads_photo',$request->image->getClientOriginalName());
-       //dd($request);
-        //$path  = Storage::putFile('ads_photo',$request->file('image'));
 
     }
 
@@ -85,7 +81,6 @@ class AdController extends Controller
     public function show($category,$subcategory,Ad $ad)
     {
         $city = $ad->cities->first()->name;
-
        return view('ad',['ad'=>$ad,'city'=>$city]);
     }
 
@@ -97,7 +92,8 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
-        //
+
+        //return view('edit');
     }
 
     /**

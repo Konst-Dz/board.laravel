@@ -32,8 +32,8 @@
 
                     <div class="mb-4">
                         <div class="slide-one-item home-slider owl-carousel">
-                            <div><img src="{{ asset($ad->photo) }}" alt="Image" class="img-fluid"></div>
-                            <div><img src="{{ asset($ad->photo) }}" alt="Image" class="img-fluid"></div>
+                            <div><img src="{{ asset( \Illuminate\Support\Facades\Storage::url($ad->photo) ) }}" alt="Image" class="img-fluid"></div>
+                            <div><img src="{{ asset( \Illuminate\Support\Facades\Storage::url($ad->photo) ) }}" alt="Image" class="img-fluid"></div>
                         </div>
                     </div>
 

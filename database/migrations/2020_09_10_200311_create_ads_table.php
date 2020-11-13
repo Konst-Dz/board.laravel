@@ -19,7 +19,6 @@ class CreateAdsTable extends Migration
             $table->text('description')->nullable();
             $table->double('price')->default(0);
             $table->string('photo')->nullable();
-            $table->string('slug');
             $table->bigInteger('subcategory_id');
             $table->bigInteger('user_id');
             $table->timestamps();
