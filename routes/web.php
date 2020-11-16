@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::delete('delete/{$ad}',['App\Http\Controllers\AdController','destroyPhoto']);
+
 Route::middleware('auth')->group(function (){
     Route::resources([
         'admin/category' => 'App\Http\Controllers\Admin\CategoryController',
@@ -19,12 +22,13 @@ Route::middleware('auth')->group(function (){
     ]);
 
     Route::get('edit/{ad}', ['App\Http\Controllers\AdController','edit']);
-    Route::delete('photo/{$}')
+    Route::put('ads/update/{ad}', ['App\Http\Controllers\AdController','update']);
+
 });
 
 Route::resource('ads','App\Http\Controllers\AdController',[
 
-    'only'=>['create','store'],
+    'only'=>['create','store',],
 
     ]);
 

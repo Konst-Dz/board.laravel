@@ -38,8 +38,9 @@
                             {{$message}}
                         @endforeach
                     @endif
-                    <form  action="{{   route('ads.store')  }}" method="POST" enctype="multipart/form-data" class="p-5 bg-white">
+                    <form  action="{{   url('ads/update/'.$ad->id)  }}" method="POST" enctype="multipart/form-data" class="p-5 bg-white">
                         @csrf
+                        @method('PUT')
 
                         <div class="row form-group">
                             <div class="col-md-12 mb-3 mb-md-0">
@@ -135,7 +136,7 @@
 
                     </form>
 
-                        <form action="" method="POST">
+                        <form method="POST" action="{{ url('delete/'.$ad->id) }}" >
                             @csrf
                             @method('DELETE')
                             <img src="{{ \Illuminate\Support\Facades\Storage::url($ad->photo) }}" alt="" height="200" width="250">

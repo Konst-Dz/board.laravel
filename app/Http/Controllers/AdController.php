@@ -107,9 +107,27 @@ class AdController extends Controller
      * @param  \App\Models\Ad  $ad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ad $ad)
+    public function update(StoreAd $request, Ad $ad)
     {
-        //
+
+        if ($request->file('image')){
+            $path =  $request->file('image')->store('ads_photo');
+        }
+        else{
+            $path = null;
+        }
+
+        $ad->update([
+
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'photo' => $path ,
+            'subcategory_id' => $request->category ,
+
+        ]);
+
+        $ad->save();
     }
 
     /**
@@ -125,6 +143,10 @@ class AdController extends Controller
 
     public function destroyPhoto(Ad $ad)
     {
+        //Storage::delete($ad->photo);
+        $ad->update(['$ad->photo'=>'']);
+        $ad->save();
 
+        return back();
     }
 }
