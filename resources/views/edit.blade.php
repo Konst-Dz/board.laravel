@@ -12,7 +12,7 @@
 
                     <div class="row justify-content-center mt-5">
                         <div class="col-md-8 text-center">
-                            <h1>{{__('messages.addAnAd')}}</h1>
+                            <h1>{{__('messages.editAnAd')}}</h1>
                         </div>
                     </div>
 
@@ -44,7 +44,7 @@
                         <div class="row form-group">
                             <div class="col-md-12 mb-3 mb-md-0">
                                 <label class="text-black" for="name">{{__('messages.adName')}}</label>
-                                <input type="text" name="name" id="name" class="form-control">
+                                <input type="text" name="name" id="name" class="form-control" value="{{ $ad->name }}" >
                             </div>
 
                         </div>
@@ -60,7 +60,13 @@
                                     @foreach($categories as $category)
                                         <optgroup label="{{ $category->name }}" >
                                             @foreach($category->subcategory as $subcategory)
-                                                <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
+
+                                                <option  value="{{ $subcategory->id }}"
+                                                @if( $subcategory->id == $ad->subcategory_id )
+                                                    selected
+                                                @endif
+                                                >{{ $subcategory->name }}</option>
+
                                             @endforeach
                                         </optgroup>
                                     @endforeach
@@ -72,7 +78,7 @@
                         <div class="row form-group">
                             <div class="col-md-12">
                                 <label class="text-black" for="description">{{__('messages.description')}}</label>
-                                <textarea name="description" id="description" cols="30" rows="7" class="form-control" placeholder=""></textarea>
+                                <textarea name="description" id="description" cols="30" rows="7" class="form-control" placeholder=""> {{ $ad->description }}</textarea>
                             </div>
                         </div>
 
@@ -80,7 +86,7 @@
 
                             <div class="col-md-12">
                                 <label class="text-black" for="price">{{__('messages.price')}}</label>
-                                <input name="price" type="number" id="price" class="form-control">
+                                <input name="price" type="number" id="price" class="form-control" value="{{ $ad->price }}">
                             </div>
                         </div>
 
@@ -88,7 +94,7 @@
 
                             <div class="col-md-12">
                                 <label class="text-black" for="phone">{{__('messages.phone')}}</label>
-                                <input type="tel" id="phone" name="phone" class="form-control" autocomplete="on">
+                                <input type="tel" id="phone" name="phone" class="form-control" autocomplete="on" value="{{ $phone }}" >
                             </div>
                         </div>
 
@@ -99,19 +105,25 @@
                                 <select class="form-control" name="city" id="city" required>
                                     <option value=""></option>
                                     @foreach($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                        <option value="{{ $city->id }}"
+                                                @if( $city->id == $cityId )
+                                                selected
+                                                 @endif
+                                        >{{ $city->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
 
-                        <div class="row form-group">
-                            <div class="col-md-12">
-                                <label class="text-black" for="">Фото</label>
-                                <input type="file" id="" name="image" class="">
-                            </div>
-                        </div>
 
+                        @if(!$ad->photo)
+                            <div class="row form-group">
+                                <div class="col-md-12">
+                                    <label class="text-black" for="">Фото</label>
+                                    <input type="file" id="" name="image" class="">
+                                </div>
+                            </div>
+                        @endif
 
 
                         <div class="row form-group">
@@ -122,6 +134,14 @@
 
 
                     </form>
+
+                        <form action="" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <img src="{{ \Illuminate\Support\Facades\Storage::url($ad->photo) }}" alt="" height="200" width="250">
+                            <button type="submit">Удалить фото</button>
+                        </form>
+
                 </div>
 
             </div>

@@ -92,8 +92,12 @@ class AdController extends Controller
      */
     public function edit(Ad $ad)
     {
+        $categories = Category::all();
+        $cities = City::all();
+        $phone = $ad->phones->first()->number ?? '';
+        $cityId = $ad->cities->first()->id;
 
-        //return view('edit');
+        return view('edit',compact(['categories','cities','ad','phone','cityId']));
     }
 
     /**
@@ -117,5 +121,10 @@ class AdController extends Controller
     public function destroy(Ad $ad)
     {
         //
+    }
+
+    public function destroyPhoto(Ad $ad)
+    {
+
     }
 }

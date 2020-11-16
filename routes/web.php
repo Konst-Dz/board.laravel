@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function (){
     ]);
 
     Route::get('edit/{ad}', ['App\Http\Controllers\AdController','edit']);
+    Route::delete('photo/{$}')
 });
 
 Route::resource('ads','App\Http\Controllers\AdController',[
