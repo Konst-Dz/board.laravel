@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::delete('delete/{$ad}',['App\Http\Controllers\AdController','destroyPhoto']);
+Route::delete('delete/photo/{ad}',['App\Http\Controllers\PhotoController','destroy'])->name('delete.photo');
 
 Route::middleware('auth')->group(function (){
     Route::resources([

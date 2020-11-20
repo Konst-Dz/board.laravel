@@ -127,7 +127,6 @@ class AdController extends Controller
 
         ]);
 
-        $ad->save();
     }
 
     /**
@@ -141,12 +140,4 @@ class AdController extends Controller
         //
     }
 
-    public function destroyPhoto(Ad $ad)
-    {
-        //Storage::delete($ad->photo);
-        $ad->update(['$ad->photo'=>'']);
-        $ad->save();
-
-        return back();
-    }
 }

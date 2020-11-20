@@ -136,12 +136,15 @@
 
                     </form>
 
-                        <form method="POST" action="{{ url('delete/'.$ad->id) }}" >
+                        <form method="POST" action="{{ url('delete/photo/'.$ad->id) }}" >
                             @csrf
                             @method('DELETE')
                             <img src="{{ \Illuminate\Support\Facades\Storage::url($ad->photo) }}" alt="" height="200" width="250">
                             <button type="submit">Удалить фото</button>
+
                         </form>
+
+
 
                 </div>
 
